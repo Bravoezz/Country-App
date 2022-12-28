@@ -21,6 +21,19 @@ const DetailCountry = () => {
           <h3>{data[0].id}</h3>
           <h3>{data[0].subregion}</h3>
           <h3>{data[0].poblacion}</h3>
+          <hr />
+          {data[0].activities?.map((e ,i ) => (
+            <div key={i}>
+              <h2>Activities</h2>
+              <ul>
+                <li>Nombre: {e.name}</li>
+                <li>Dificultad: {e.dificultad}</li>
+                <li>Duracion: {e.duracion}</li>
+                <li>Temporada: {e.temporada}</li>
+              </ul>
+              
+            </div>
+          ))}
         </>
       )}
     </div>

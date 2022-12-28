@@ -11,7 +11,7 @@ const Navbar = () => {
     let ss = e.target.value;
     if (!ss.length) dispatch(res());
     setSearch(ss);
-    dispatch(filterChange(ss));
+    if(ss.length > 1)dispatch(filterChange(ss));
   };
 
   return (

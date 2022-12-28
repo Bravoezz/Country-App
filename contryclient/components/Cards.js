@@ -5,7 +5,7 @@ import { useGetAllCountriesQuery } from "../RTK";
 import { getAllCountriesApi } from "../redux/countrySlice";
 import Card from "./Card";
 
-const Cards = () => {
+const Cards = ({pag, setPag}) => {
   const { data, isLoading } = useGetAllCountriesQuery();
   const dispatch = useDispatch();
   const { allCount, countryQuery,temp } = useSelector((state) => state.countries);
@@ -16,7 +16,7 @@ const Cards = () => {
 
 const counrtyPag = () => {
 
- if(!countryQuery) return allCount;
+ if(!countryQuery) return allCount.slice(pag, pag+15);
  return temp
 }
 
@@ -26,9 +26,11 @@ const counrtyPag = () => {
         <h1>Paises loading... </h1>
       ) : (
         <>
-          {counrtyPag()?.map((e) => (
+          {counrtyPag().length?counrtyPag().map((e) => (
             <Card key={e.id} id={e.id} capital={e.capital} name={e.name} flag={e.flag} />
-          ))}
+          ))
+        : <h2>The country does not exist</h2>
+        }
         </>
       )}
     </ContainCards>

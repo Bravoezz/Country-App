@@ -1,9 +1,13 @@
 import Head from 'next/head'
+import { useState } from 'react'
 import Cards from '../components/Cards'
 import Hell from '../components/Hell'
+import Pagination from '../components/Pagination'
 
 
 export default function Home() {
+  const [pag, setPag] = useState(0)
+
   return (
     <>
       <Head>
@@ -13,7 +17,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Hell />
-      <Cards />
+      <Pagination pag={pag} setPag={setPag}/>
+      <Cards pag={pag} setPag={setPag} />
     </>
   )
 }

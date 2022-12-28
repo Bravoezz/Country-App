@@ -20,8 +20,14 @@ export const countrySlice = createSlice({
       let fin = state.temp.filter((ps) =>
         ps.name.toLowerCase().includes(change)
       );
+      let suport;
+      if (!fin.length) {
+        suport = state.allCount.filter((ps) =>
+          ps.name.toLowerCase().includes(change)
+        );
+      }
       state.allCount = state.allCount;
-      state.temp = fin;
+      state.temp = fin.length ? fin : suport;
       state.countryQuery = true;
     },
     res: (state) => {

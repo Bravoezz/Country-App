@@ -1,10 +1,15 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 const Hell = () => {
+  const {countryQuery} = useSelector(state => state.countries)
   return (
     <Div>
-        <h2>All Countries</h2>
+      {
+        !countryQuery? <h2>All Countries</h2>
+        : <h2>Searching...</h2>
+      }
     </Div>
   )
 }
