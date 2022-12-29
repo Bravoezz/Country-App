@@ -2,14 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 
+
 const Card = (props) => {
   const router = useRouter();
+
+ 
+
   const handleClick = (id) => {
     router.push("/details/[id]", `/details/${id}`);
   };
   return (
     <ContainCard className="card">
-     
       <span
         style={{
           backgroundImage: `url(${props.flag})`,
@@ -20,7 +23,7 @@ const Card = (props) => {
         id="img"
       ></span>
       <h2>{props.name}</h2>
-
+      
       <p>Capital: {props.capital}</p>
       <button onClick={() => handleClick(props.id)}>{"Detalles"}</button>
     </ContainCard>
@@ -37,7 +40,7 @@ const ContainCard = styled.div`
   text-align: center;
   transition: all 0.5s;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 3px 5px #00000029;  
+  box-shadow: 0px 3px 5px #00000029;
   #img {
     display: flex;
     margin: 30px auto 25px auto;
@@ -61,7 +64,6 @@ const ContainCard = styled.div`
     display: none;
     opacity: 0;
     transition: all 0.75s;
-    
   }
   button {
     all: unset;
@@ -74,10 +76,10 @@ const ContainCard = styled.div`
     border: none;
   }
   &:hover {
-    background-color:#efefef;
+    background-color: #efefef;
     border: 1px solid #eb772a;
     box-shadow: none;
-    
+
     #img {
       width: 100%;
       height: 70%;

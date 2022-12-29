@@ -2,25 +2,30 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { filterChange, res } from "../redux/countrySlice";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
+  const Router = useRouter();
 
   const handleChange = (e) => {
     let ss = e.target.value;
     if (!ss.length) dispatch(res());
     setSearch(ss);
-    if(ss.length > 1)dispatch(filterChange(ss));
+    if (ss.length > 1) dispatch(filterChange(ss));
   };
 
   return (
     <ContainNavbar>
       <div id="div">
-      <img src={"https://www.ideasconsentido.cl/imagenes/google.svg"} alt="logo"  />
-      <h1>Country App</h1>
+        <img
+          src={"https://www.ideasconsentido.cl/imagenes/google.svg"}
+          alt="logo"
+        />
+        <h1 onClick={()=> Router.push("/")}>Country App</h1>
       </div>
-      <form>
+      <form onSubmit={(e)=> e.preventDefault()}>
         <Label>
           <input type="text" onChange={handleChange} value={search} />
           <button>Buscar</button>
@@ -36,13 +41,13 @@ const Label = styled.label`
   box-shadow: 0px 3px 5px #00000029;
   border-radius: 10px;
   padding: 3px 5px;
-  &:hover{
-  box-shadow: none;
-  border: 1px solid orange;
-button{
-  color : orange;
-  border-left: 1px solid orange;
-}
+  &:hover {
+    box-shadow: none;
+    border: 1px solid orange;
+    button {
+      color: orange;
+      border-left: 1px solid orange;
+    }
   }
   input {
     background-color: gray;
@@ -65,22 +70,21 @@ const ContainNavbar = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  #div{
-    display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
+  h1{
+    cursor: pointer;
   }
-  img{
+  #div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+  img {
     height: 80px;
     transition: 0.5s ease all;
-    &:hover{
-    
+    &:hover {
       transform: scale(1.2);
       transition: 0.5s ease all;
-    
+    }
   }
-
-  }
-  
 `;
