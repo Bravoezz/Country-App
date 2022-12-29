@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useGetAllCountriesQuery } from "../RTK";
 import { getAllCountriesApi } from "../redux/countrySlice";
 import Card from "./Card";
+import {ImSad} from "react-icons/im"
 
 const Cards = ({pag, setPag}) => {
   const { data, isLoading } = useGetAllCountriesQuery();
@@ -29,7 +30,7 @@ const counrtyPag = () => {
           {counrtyPag().length?counrtyPag().map((e) => (
             <Card key={e.id} id={e.id} capital={e.capital} name={e.name} flag={e.flag} />
           ))
-        : <h2>The country does not exist</h2>
+        : <h2>The country does not exist <ImSad></ImSad></h2>
         }
         </>
       )}
