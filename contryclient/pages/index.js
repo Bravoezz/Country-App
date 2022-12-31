@@ -34,8 +34,15 @@ const ContainApp = styled.div`
 background-color: ${(props) => `${props.themeIs ?  "rgb(24 24 27)":"rgb(243 244 246)"}`};
 padding-top: 30px;
 margin: 0;
+
+@media screen and (max-width: 767px) {
+  min-height: 460vh;
+}
 `; 
 
 const FakeDiv = styled.div`
 height: 80px;
+@media screen and (max-width: 767px) {
+  display: none;
+}
 `;

@@ -16,7 +16,7 @@
   
   /* The slider */
   .slider {
-    --background: #28096b;
+    --background: rgb(24 24 27);
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -36,13 +36,13 @@
     border-radius: 50%;
     left: 10%;
     bottom: 15%;
-    box-shadow: inset 8px -4px 0px 0px #fff000;
+    box-shadow: inset 8px -4px 0px 0px orange;
     background: var(--background);
     transition: .5s;
   }
   
   input:checked + .slider {
-    background-color: #522ba7;
+    background-color: gray;
   }
   
   input:checked + .slider:before {
