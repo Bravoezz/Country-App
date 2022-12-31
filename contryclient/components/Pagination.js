@@ -5,6 +5,8 @@ import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
 const Pagination = ({ pag, setPag }) => {
   const { allCount } = useSelector((state) => state.countries);
+  const {themeIs}  = useSelector(state => state.theme)
+
   let array = [];
 
   for (let i = 0; i < allCount.length; i += 15) {
@@ -23,10 +25,11 @@ const Pagination = ({ pag, setPag }) => {
   };
   return (
     <ContPag>
-      <FaChevronLeft id="left" onClick={handlePrev}></FaChevronLeft>
+      <FaChevronLeft themeIs={themeIs} id="left" onClick={handlePrev}></FaChevronLeft>
       {allCount.length
         ? array.map((e) => (
             <ButtonPag
+            themeIs={themeIs}
               current={e}
               pag={pag}
               key={e}
@@ -36,7 +39,7 @@ const Pagination = ({ pag, setPag }) => {
             </ButtonPag>
           ))
         : null}
-      <FaChevronRight id="right" onClick={handleNext}></FaChevronRight>
+      <FaChevronRight themeIs={themeIs} id="right" onClick={handleNext}></FaChevronRight>
     </ContPag>
   );
 };
@@ -54,10 +57,12 @@ const ContPag = styled.div`
   #right {
     transform: scale(1.3);
     transition: 1s ease all;
+    color: ${(props) =>
+    `${props.themeIs ? "black" : "orange"}`};
     &:hover {
       transform: scale(1.5);
       transition: 0.5s ease all;
-      color: orange;
+      color: black;
     }
     &:active {
       transform: scale(1);
@@ -74,7 +79,8 @@ const ButtonPag = styled.span`
   box-shadow: ${(props) =>
     `${props.current === props.pag / 15 ? "none" : "0px 3px 5px #00000029"}`};
   border-radius: 5px;
-  background-color: #fff;
+  background-color: ${(props) =>
+    `${props.themeIs ? "rgb(39 39 42)" : "white"}`};
   margin-right: 7px;
   margin-left: 7px;
   width: 35px;
@@ -83,7 +89,7 @@ const ButtonPag = styled.span`
   align-items: center;
   justify-content: center;
   color: ${(props) =>
-    `${props.current === props.pag / 15 ? "orange" : "black"}`};
+    `${props.current === props.pag / 15 ? "orange" : "gray"}`};
   &:hover {
     color: orange;
   }

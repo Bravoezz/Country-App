@@ -30,7 +30,7 @@ const counrtyPag = () => {
           {counrtyPag().length?counrtyPag().map((e) => (
             <Card key={e.id} id={e.id} capital={e.capital} name={e.name} flag={e.flag} />
           ))
-        : <h2>The country does not exist <ImSad></ImSad></h2>
+        : <h2 id="hh2">The country does not exist <ImSad></ImSad></h2>
         }
         </>
       )}
@@ -43,7 +43,7 @@ export default Cards;
 const ContainCards = styled.div`
   width: 90%;
   margin: 10px auto;
-
+  height: 55vw;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -51,4 +51,7 @@ const ContainCards = styled.div`
   padding: 20px 30px;
   margin: 0 auto;
   justify-content: center;
+  h2{
+    color: gray;
+  }
 `;

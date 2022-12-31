@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import styled from 'styled-components'
 import Cards from '../components/Cards'
 import Hell from '../components/Hell'
 import Pagination from '../components/Pagination'
@@ -7,6 +9,7 @@ import Pagination from '../components/Pagination'
 
 export default function Home() {
   const [pag, setPag] = useState(0)
+  const {themeIs}  = useSelector(state => state.theme)
 
   return (
     <>
@@ -16,9 +19,23 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <FakeDiv></FakeDiv>
+      <ContainApp themeIs={themeIs}>
+      
       <Hell />
       <Pagination pag={pag} setPag={setPag}/>
       <Cards pag={pag} setPag={setPag} />
+      </ContainApp>
     </>
   )
 }
+
+const ContainApp = styled.div`
+background-color: ${(props) => `${props.themeIs ?  "rgb(24 24 27)":"rgb(243 244 246)"}`};
+padding-top: 30px;
+margin: 0;
+`; 
+
+const FakeDiv = styled.div`
+height: 80px;
+`;

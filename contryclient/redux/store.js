@@ -3,11 +3,13 @@ import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import { countryApi } from '../RTK'
 import  countryReducer  from './countrySlice'
+import themeReducer from "./themeSlice"
 
 export const store = configureStore({
   reducer: {
     // Add the generated reducer as a specific top-level slice
     countries: countryReducer,
+    theme: themeReducer,
     [countryApi.reducerPath]: countryApi.reducer,
   },
   // Adding the api middleware enables caching, invalidation, polling,

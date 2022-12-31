@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-
+import { useSelector } from "react-redux";  
 
 const Card = (props) => {
   const router = useRouter();
+  const {themeIs}  = useSelector(state => state.theme)
+
 
  
 
@@ -12,7 +14,7 @@ const Card = (props) => {
     router.push("/details/[id]", `/details/${id}`);
   };
   return (
-    <ContainCard className="card">
+    <ContainCard themeIs={themeIs} className="card">
       <span
         style={{
           backgroundImage: `url(${props.flag})`,
@@ -35,7 +37,9 @@ export default Card;
 const ContainCard = styled.div`
   width: 250px;
   height: 250px;
-  background: white;
+  margin: 0;
+  background-color: ${(props) =>
+    `${props.themeIs ? "rgb(39 39 42)" : "white"}`};
   border-radius: 10px;
   text-align: center;
   transition: all 0.5s;
@@ -59,6 +63,7 @@ const ContainCard = styled.div`
     transition: all 0.1s;
     z-index: -99;
     line-height: 17px;
+    color: gray;
   }
   p {
     display: none;
@@ -76,8 +81,8 @@ const ContainCard = styled.div`
     border: none;
   }
   &:hover {
-    background-color: #efefef;
-    border: 1px solid #eb772a;
+    background-color: transparent;
+    border: ${(props)=> `1px solid ${props.themeIs? "rgba(128, 128, 128, 0.2)": "#eb772a"}`};
     box-shadow: none;
 
     #img {
@@ -101,6 +106,7 @@ const ContainCard = styled.div`
       opacity: 1;
       margin-bottom: 7px;
       transition: all 0.1s;
+      color: gray;
     }
     button {
       text-decoration: none;

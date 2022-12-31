@@ -25,6 +25,7 @@ margin: 10px auto;
 h2{
     font-weight: bolder;
     align-items: center;
+    color: gray;
 }
 `;
 const typing = keyframes`
